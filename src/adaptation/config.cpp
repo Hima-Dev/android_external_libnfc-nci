@@ -18,7 +18,7 @@
 #include "OverrideLog.h"
 #include "config.h"
 #include <stdio.h>
-#include <string>
+#include <string.h>
 #include <vector>
 #include <list>
 

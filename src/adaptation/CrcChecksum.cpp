@@ -21,7 +21,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <string>
+#include <string.h>
 #define LOG_TAG "NfcNciHal"
 
 
