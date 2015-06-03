@@ -15,11 +15,12 @@ UDRV := src/udrv
 HALIMPL := halimpl/bcm2079x
 D_CFLAGS := -DANDROID -DBUILDCFG=1
 
+
 ######################################
 # Build shared library system/lib/libnfc-nci.so for stack code.
 
 include $(CLEAR_VARS)
-LOCAL_PRELINK_MODULE := false
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_ARM_MODE := arm
 LOCAL_MODULE := libnfc-nci
 LOCAL_MODULE_TAGS := optional
@@ -53,11 +54,8 @@ include $(BUILD_SHARED_LIBRARY)
 # Android's generic HAL (libhardware.so) dynamically loads this shared library.
 
 include $(CLEAR_VARS)
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_RELATIVE_PATH := hw
-
-ifeq ($(BOARD_NFC_CHIPSET),pn547)
-    include $(LOCAL_PATH)/halimpl/pn54x/Android.mk
-else
 
 ifneq ($(BOARD_NFC_HAL_SUFFIX),)
     HAL_SUFFIX := bcm2079x.$(BOARD_NFC_HAL_SUFFIX)
@@ -87,7 +85,6 @@ LOCAL_CFLAGS := $(D_CFLAGS) -DNFC_HAL_TARGET=TRUE -DNFC_RW_ONLY=TRUE
 LOCAL_CPPFLAGS := $(LOCAL_CFLAGS)
 include $(BUILD_SHARED_LIBRARY)
 
-endif # pn547
 
 ######################################
 include $(call all-makefiles-under,$(LOCAL_PATH))
