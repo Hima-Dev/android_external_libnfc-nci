@@ -36,7 +36,7 @@
 #   define FW_DLL_ROOT_DIR "/system/vendor/firmware/"
 #   define FW_DLL_EXTENSION ".so"
 
-#if(NFC_NXP_CHIP_TYPE != PN547C2)
+#ifndef NFC_NXP_CHIP_TYPE_PN548C2
 
 /* Actual FW library name*/
 #define FW_LIB_PATH       FW_DLL_ROOT_DIR "libpn548ad_fw"          FW_DLL_EXTENSION
